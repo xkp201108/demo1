@@ -12,4 +12,46 @@ function openTab(text, url, iconCls){
     }
 }
 
+function logout(){
+    $.messager.confirm("来自crm","确定要退出系统吗",function (r) {
+      if (r){
+          $.messager.alert("来自crm系统","两秒后退出","info");
+          setTimeout(function () {
+                $.removeCookie("userName");
+                $.removeCookie("trueName");
+                window.location.href = "index";
+          },2000)
+          //alert("退出");
+      }
+    })
+}
+function openPasswordModifyDialog() {
+  $("#dlg").dialog("open");
+}
 
+function closePasswordModifyDialog() {
+  $("#dlg").dialog("close");
+}
+
+function modifyPassword() {
+  $("#fm").form("submit",{
+        url:ctx+"/user/updatePwd",
+        onSubmit:function () {
+          return $("#fm").form("validate");
+        },
+    success:function(data){
+            data = JSON.parse(data);
+            if(data.code==200){
+                $.messager.alert("来自crm系统","两秒后跳转","info");
+                setTimeout(function () {
+                  $.removeCookie("userName");
+                  $.removeCookie("trueName");
+                  $.removeCookie("userId");
+                  window.location.href="index";
+                },2000)
+            }else {
+                $.messager.alert("来自crm系统",data.msg,"info");
+            }
+  }
+  })
+}

@@ -12,4 +12,14 @@
     SELECT <include refid="user_columns"/>
     from t_user where user_name = #{userName}
   </select>
+
+  <update id="updatePwd">
+    UPDATE t_user SET user_pwd = #{userPwd}
+    WHERE id = #{id}
+  </update>
+
+  <select id="queryUserById" parameterType="String" resultType="user">
+    SELECT <include refid="user_columns"/>
+    FROM t_user WHERE id = #{id}
+  </select>
 </mapper>
