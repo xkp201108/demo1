@@ -6,7 +6,7 @@
 
     <typeAliases>
         <package name="com.mage.crm.vo"/>
-
+        <package name="com.mage.crm.query"/>
     </typeAliases>
 
     <plugins>

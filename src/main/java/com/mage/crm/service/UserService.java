@@ -37,9 +37,10 @@ public class UserService {
       AssertUtil.isTrue(!newPassword.equals(confirmPasswoord),"新密码与确认密码不一致");
       User user = userDao.queryUserById(userId);
       AssertUtil.isTrue(null==user,"用户不存在");
-      String oldPwd = Md5Util.encode(oldPassword);//解码
+      String oldPwd = Md5Util.encode(oldPassword);//将输入的旧密码加密
       AssertUtil.isTrue(!oldPwd.equals(user.getUserPwd()),"原密码输入错误");
-      Integer integer = userDao.updatePwd(userId,newPassword);
+      String newPwd = Md5Util.encode(newPassword);//将修改后的密码加密
+      Integer integer = userDao.updatePwd(userId,newPwd);
       AssertUtil.isTrue(integer<1,"密码修改失败");
     }
 }
