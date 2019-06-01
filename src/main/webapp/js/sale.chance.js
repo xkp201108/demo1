@@ -67,3 +67,36 @@ function openModifyAccountDialog() {
   $("#fm").form("load",rows[0]);
   $("#dlg").dialog("open").dialog("setTitle","修改营销机会信息");
 }
+
+
+function deleteAccount() {
+  var rows = $("#dg").datagrid("getSelections");
+  if(rows.length==0){
+    $.messager.alert("crm","请先选择一条记录","info");
+    return ;
+  }
+  var mydata = "ids";
+  for(var i=0;i<rows.length;i++){
+    if(i<rows.length-1){
+      mydata  =mydata + rows[i].id + "$ids=" ;
+    }else {
+      mydata = mydata + rows[i].id;
+    }
+  }
+  $.messager.confirm("crm","确定要删除所选中的数据么？",function (r) {
+        if(r){
+          $.ajax({
+                type:"post",
+                url:ctx + "/sale_chance/delete",
+                data:mydata,
+                dataType:"json",
+                success:function (data) {
+                  $.messager.alert("crm",data.msg,"info");
+                  if (data.code == 200) {
+                    searchSaleChances();
+                  }
+                }
+          })
+        }
+      })
+}

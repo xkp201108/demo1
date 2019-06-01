@@ -14,30 +14,54 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("sale_chance")
-public class SaleChanceController extends BaseController{
+public class SaleChanceController extends BaseController {
+
   @Resource
   private SaleChanceService saleChanceService;
-  @RequestMapping("index/{type}")
-  public String index(@PathVariable("type") String type){
-      switch (type){
-        case "1":return "sale_chance";
-        case "2":return "cus_dev_plan";
-        default:return "error";
-      }
-    }
 
-    @RequestMapping("querySaleChancesByParams")
-    @ResponseBody
-    public Map<String,Object>  querySaleChancesByParams(SaleChanceQuery saleChanceQuery){
-      Map<String, Object> map = saleChanceService.querySaleChancesByParams(saleChanceQuery);
-      return map;
+  @RequestMapping("index/{type}")
+  public String index(@PathVariable("type") String type) {
+    switch (type) {
+      case "1":
+        return "sale_chance";
+      case "2":
+        return "cus_dev_plan";
+      default:
+        return "error";
+    }
   }
+
+  @RequestMapping("querySaleChancesByParams")
+  @ResponseBody
+  public Map<String, Object> querySaleChancesByParams(SaleChanceQuery saleChanceQuery) {
+    Map<String, Object> map = saleChanceService.querySaleChancesByParams(saleChanceQuery);
+    return map;
+  }
+
   @RequestMapping("insert")
   @ResponseBody
-  public MessageModel insert(SaleChance saleChance){
+  public MessageModel insert(SaleChance saleChance) {
     MessageModel messageModel = new MessageModel();
     saleChanceService.insert(saleChance);
     messageModel.setResult("营销机会添加成功");
+    return messageModel;
+  }
+
+  @RequestMapping("update")
+  @ResponseBody
+  public MessageModel update(SaleChance saleChance) {
+    saleChanceService.update(saleChance);
+    MessageModel messageModel = new MessageModel();
+    messageModel.setResult("营销机会修改成功");
+    return messageModel;
+  }
+
+  @RequestMapping("delete")
+  @ResponseBody
+  public MessageModel delete(Integer[] ids){
+    saleChanceService.delete(ids);
+    MessageModel messageModel = new MessageModel();
+    messageModel.setResult("营销机会删除成功");
     return messageModel;
   }
 }

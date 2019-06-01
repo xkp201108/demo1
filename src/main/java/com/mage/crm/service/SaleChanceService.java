@@ -49,4 +49,19 @@ public class SaleChanceService {
     AssertUtil.isTrue(StringUtils.isBlank(phone),"联系电话不能为空");
   }
 
+  public void update(SaleChance saleChance) {
+    checkParams(saleChance.getCustomerName(),saleChance.getLinkMan(),saleChance.getLinkPhone());
+    saleChance.setUpdateDate(new Date());
+    saleChance.setState(0);
+    if(!StringUtils.isBlank(saleChance.getAssignMan())){
+      saleChance.setState(1);
+      saleChance.setAssignTime(new Date());
+    }
+    AssertUtil.isTrue(saleChanceDao.update(saleChance)<1,"数据更新失败");
+  }
+
+
+  public void delete(Integer[] ids) {
+    AssertUtil.isTrue(saleChanceDao.delete(ids)<1,"营销机会删除失败");
+  }
 }
