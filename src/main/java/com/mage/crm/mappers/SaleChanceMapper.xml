@@ -34,7 +34,8 @@
     UPDATE t_sale_chance
     set is_valid=0
     where id IN
-    <foreach collection="array" item="sale_chance_id" open="(" separator="," close=")">
+    <foreach
+      collection="array" item="sale_chance_id" open="(" separator="," close=")">
       #{sale_chance_id}
     </foreach>
   </delete>
