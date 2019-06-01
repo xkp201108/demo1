@@ -56,7 +56,7 @@
         联系电话:<input name="linkPhone" required=true class="easyui-validatebox" type="text"/><br/>
         机会描述:<input name="description" type="text"/><br/>
         分配人:<input id="cc"  class="easyui-combobox" name="assignMan"
-                   valueField='trueName'  textField='trueName' url='${ctx}/user/queryAllCustomerManager'panelHeight="auto"/><br/><br/>
+                   valueField='trueName'  textField='trueName' url='${ctx}/user/queryAllCustomerManagers'panelHeight="auto"/><br/><br/>
         <input name="id" id="id" type="hidden"/>
     </form>
 

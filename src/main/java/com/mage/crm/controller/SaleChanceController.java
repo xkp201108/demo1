@@ -1,8 +1,10 @@
 package com.mage.crm.controller;
 
 import com.mage.crm.base.BaseController;
+import com.mage.crm.model.MessageModel;
 import com.mage.crm.query.SaleChanceQuery;
 import com.mage.crm.service.SaleChanceService;
+import com.mage.crm.vo.SaleChance;
 import java.util.Map;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
@@ -29,5 +31,13 @@ public class SaleChanceController extends BaseController{
     public Map<String,Object>  querySaleChancesByParams(SaleChanceQuery saleChanceQuery){
       Map<String, Object> map = saleChanceService.querySaleChancesByParams(saleChanceQuery);
       return map;
+  }
+  @RequestMapping("insert")
+  @ResponseBody
+  public MessageModel insert(SaleChance saleChance){
+    MessageModel messageModel = new MessageModel();
+    saleChanceService.insert(saleChance);
+    messageModel.setResult("营销机会添加成功");
+    return messageModel;
   }
 }

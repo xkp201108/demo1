@@ -7,6 +7,9 @@ import com.mage.crm.model.MessageModel;
 import com.mage.crm.model.UserModel;
 import com.mage.crm.service.UserService;
 import com.mage.crm.util.UserLoginUtil;
+import com.mage.crm.vo.Customer;
+import com.mage.crm.vo.User;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -54,6 +57,13 @@ public class UserController extends BaseController{
         messageModel.setMsg(CrmConstant.OPS_FAILED_MSG);
       }
       return messageModel;
+    }
+
+  @RequestMapping("queryAllCustomerManagers")
+  @ResponseBody
+  public List<User> queryAllCustomerManagers(){
+    List<User> users = userService.queryAllCustomerManagers();
+    return users;
     }
 }
 

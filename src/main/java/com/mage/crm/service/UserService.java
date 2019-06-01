@@ -1,12 +1,15 @@
 package com.mage.crm.service;
 
+import com.mage.crm.dao.CustomerDao;
 import com.mage.crm.dao.UserDao;
 import com.mage.crm.model.UserModel;
 import com.mage.crm.util.AssertUtil;
 import com.mage.crm.util.Base64Util;
 import com.mage.crm.util.Md5Util;
+import com.mage.crm.vo.Customer;
 import com.mage.crm.vo.User;
 import com.mysql.jdbc.StringUtils;
+import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -43,4 +46,12 @@ public class UserService {
       Integer integer = userDao.updatePwd(userId,newPwd);
       AssertUtil.isTrue(integer<1,"密码修改失败");
     }
+
+
+  public List<User> queryAllCustomerManagers(){
+    List<User> users = userDao.queryAllCustomerManagers();
+    return users;
+
+  }
+
 }
