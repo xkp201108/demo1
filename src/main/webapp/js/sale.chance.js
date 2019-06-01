@@ -75,10 +75,10 @@ function deleteAccount() {
     $.messager.alert("crm","请先选择一条记录","info");
     return ;
   }
-  var mydata = "ids";
+  var mydata = "ids=";
   for(var i=0;i<rows.length;i++){
     if(i<rows.length-1){
-      mydata  =mydata + rows[i].id + "$ids=" ;
+      mydata  =mydata + rows[i].id + "&ids=" ;
     }else {
       mydata = mydata + rows[i].id;
     }
