@@ -4,6 +4,7 @@ import com.mage.crm.query.SaleChanceQuery;
 import com.mage.crm.vo.SaleChance;
 import java.util.List;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 public interface SaleChanceDao {
@@ -25,4 +26,13 @@ public interface SaleChanceDao {
     public Integer update(SaleChance saleChance);
 
   public Integer delete(Integer[] ids);
+
+  @Select("select id,chance_source as chanceSource,customer_name as customerName,"
+      + "cgjl,overview,link_man as linkMan,link_phone as linkPhone,"
+      + " description,create_man as createMan,assign_man as  assignMan,"
+      + " assign_time as assignTime,state,dev_result as devResult,create_date as createDate"
+      + " from t_sale_chance where id=#{id} and is_valid=1")
+  public SaleChance querySaleChanceById(String id);
+
+  public Integer updateSaleChanceDevResult(int i, Integer saleChanceId);
 }

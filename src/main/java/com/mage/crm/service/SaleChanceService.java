@@ -64,4 +64,8 @@ public class SaleChanceService {
   public void delete(Integer[] ids) {
     AssertUtil.isTrue(saleChanceDao.delete(ids)<1,"营销机会删除失败");
   }
+
+  public SaleChance querySaleChanceById(String id) {
+    return saleChanceDao.querySaleChanceById(id);
+  }
 }
