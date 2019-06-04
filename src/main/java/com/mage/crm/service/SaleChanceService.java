@@ -68,4 +68,8 @@ public class SaleChanceService {
   public SaleChance querySaleChanceById(String id) {
     return saleChanceDao.querySaleChanceById(id);
   }
+
+  public void updateSaleChanceDevResult(Integer devResult, Integer saleChanceId) {
+    AssertUtil.isTrue(saleChanceDao.updateSaleChanceDevResult(devResult,saleChanceId)<1,"修改开发结果失败");
+  }
 }

@@ -60,4 +60,11 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <delete id="delete" parameterType="java.lang.Integer">
+    update t_cus_dev_plan
+    set is_valid = 0
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
 </mapper>

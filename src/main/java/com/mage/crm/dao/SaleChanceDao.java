@@ -4,6 +4,7 @@ import com.mage.crm.query.SaleChanceQuery;
 import com.mage.crm.vo.SaleChance;
 import java.util.List;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -34,5 +35,6 @@ public interface SaleChanceDao {
       + " from t_sale_chance where id=#{id} and is_valid=1")
   public SaleChance querySaleChanceById(String id);
 
-  public Integer updateSaleChanceDevResult(int i, Integer saleChanceId);
+  @Update("update t_sale_chance set dev_result = #{devResult} where id = #{saleChanceId} and is_valid = 1")
+  public Integer updateSaleChanceDevResult(@Param("devResult") Integer devResult,@Param("saleChanceId") Integer saleChanceId);
 }

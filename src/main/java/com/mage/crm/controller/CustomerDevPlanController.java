@@ -73,4 +73,23 @@ public class CustomerDevPlanController extends BaseController{
     }
     return messageModel;
   }
+
+  @RequestMapping("delete")
+  @ResponseBody
+  public MessageModel delete(Integer id){
+    MessageModel messageModel = new MessageModel();
+    try{
+      customerDevPlanService.delete(id);
+    }catch (ParamsException e){
+      e.printStackTrace();
+      messageModel.setMsg(e.getMsg());
+      messageModel.setCode(e.getCode());
+    }catch (Exception e){
+      e.printStackTrace();
+      messageModel.setCode(CrmConstant.OPS_FAILED_DODE);
+      messageModel.setMsg(CrmConstant.OPS_FAILED_MSG);
+    }
+    return messageModel;
+  }
+
 }

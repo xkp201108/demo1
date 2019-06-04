@@ -49,6 +49,10 @@ public class CustomerDevPlanService {
     AssertUtil.isTrue(customerDevPlanDao.update(customerDevPlan)<1,"修改开发计划失败");
     AssertUtil.isTrue(saleChanceDao.updateSaleChanceDevResult(1,customerDevPlan.getSaleChanceId())<1,"修改开发结果失败");
   }
+
+  public void delete(Integer id) {
+    AssertUtil.isTrue(customerDevPlanDao.delete(id)<1,"删除开发计划失败");
+  }
 }
 
 
